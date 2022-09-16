@@ -1,0 +1,196 @@
+<button>OK</button>
+<p>1 параграф</p>
+<p>2 параграф</p>
+<p>3 параграф</p>
+  <script>
+   
+//    var obj = {
+//        a:1,
+//        b:2
+//    };
+    
+//    var arr = [];
+//    arr.push(obj.a);
+//    arr.push(obj.b);
+    
+//    const arr = Object.keys(obj);
+//    console.log(arr);
+    
+//    Основные отличия ES-5 от ES-6
+    
+//    var PI = 3.14;
+    
+//    Отличие между let и var
+    
+//    if(1){
+//        let x = 2;
+//        console.log(x);
+//    }
+//     console.log(x);
+    
+//    for(let i = 0;i < 3;i++){
+//        i += 2;
+//    }
+//     console.log(i);
+    
+    
+//    Template literals
+    
+//    let firstName = 'Иван';
+//    let lastName = 'Иванов';
+//    let year = 1990;
+    
+    function getAge(year){
+        const date = new Date();
+        const currentYear = date.getFullYear();
+        return currentYear - year;
+    }
+    
+    
+//    const FIO = firstName + " " + lastName + ", рожденный в " + year + " году, ему " + getAge(year) + " лет";
+//    const FIO = `${firstName} ${lastName}, рожденный в ${year} году, ему ${getAge(year)} лет\n`;
+//    console.log(FIO);
+    
+//    Методы строк
+    
+//    console.log(FIO.indexOf('Иванов'));
+//    console.log(FIO.endsWith('лет'));
+//    console.log(FIO.repeat(5));
+    
+    
+//    Стрелочные функции
+    
+//    const sum = function(x){
+//        return x + 50;
+//    }
+    
+    
+//    const sum = (a,b = 1) => {
+//        a = +a;
+//        if(!isNaN(a)){
+//            console.log(a + b);
+//        }else{
+//            console.log('Значение некорректное');
+//        }
+//    }
+    
+//    Методы массивов, которые в параметре принимают функцию
+    
+    let arr = ['PHP','JS','Java','C#'];
+    
+//    arr.forEach((item,i) => console.log(`${i + 1}) ${item}`));
+    
+//    let newArr = arr.filter(item => item.length > 2);
+//    console.log(newArr);
+    
+//    let find = arr.find(item => item.length > 2);
+//    console.log(find);
+
+    
+//    Метод map преобразует текущий массив в новый массив.
+//    let arrLength = arr.map(item => item.length);
+//    console.log(arrLength);
+    
+    
+//    let tC = [20,30,10];
+//    let tF = tC.map(item => ((item * 9/5) + 32));
+//    console.log(tF);
+    
+//    const box = {
+//        color:'green',
+//        position:10,
+//        test: function(){
+//            const x = this;
+//            document.querySelector('button').addEventListener('click',function(){
+//                console.log(x);
+//                console.log(`Контейнер №${x.position} имеет цвет ${x.color}`);
+//            })
+//        }
+//    }
+//    
+//    box.test();
+    
+//    const box = {
+//        color:'green',
+//        position:10,
+//        test: function(){
+//            document.querySelector('button').addEventListener('click',e=>{
+//                e.target.style.color = 'red';
+//                console.log(this);
+//                console.log(`Контейнер №${this.position} имеет цвет ${this.color}`);
+//            })
+//        }
+//    }
+////    
+//    box.test();
+      
+//      Стрелочные функции не имеют собственного контекста, они используют контекст родителя
+    
+//    Деструктуризация - это механизм, который позволяет извлечь части из составных данных. Цель - уменьшение 
+//      количества кода
+    
+//    let mas = ['Иван',20];
+//    let name = mas[0];
+//    let age = mas[1];
+//    let [name,age] = mas;
+//    console.log(`${name} : ${age}`);
+      
+      
+//     let obj = {
+//         firstName:'Иван',
+//         lastName:'Иванов',
+//         professions:['Программист','Системный администратор']
+//     };
+//      
+//    let {firstName:name,lastName,professions:[p1,p2]} = obj;
+//    console.log(`${name} ${lastName} имеет профессии: ${p1} и ${p2}`);
+      
+      
+//      let info = year => [getAge(year),65 - getAge(year)];
+//      
+//      let [age,leftWork] = info(1990);
+//      console.log(`Возраст: ${age}, осталось работать до пенсии: ${leftWork}`);
+      
+      
+//    let a = 10, b = 20;
+//      
+//    [a,b] = [b,a];
+      
+//      function f(a,b){
+//          console.log(arguments);
+//      }
+//      
+//      f(1,2,3,4,5);
+      
+      
+//      Операторы REST и SPREAD
+      
+//      Оператор Rest - это упаковка элементов в массив
+//      Оператор Spread - распаковка массива в отдельные элементы
+      
+//      function f(a,b,...c){
+//         console.log(c);
+//      }
+//      
+//      f(1,2,3,4,5);
+      
+      
+//      const values = [3,5,6,8,4,2,1];
+//      console.log(Math.max(...values));
+      
+//     let mas = [...document.querySelectorAll("p")]; 
+//     console.log(mas);
+      
+      
+//      Клонирование свойств
+      
+//      let arr1 = ['one','two'];
+//      let arr2 = ['first',...arr1,'second'];
+//      console.log(arr2);
+      
+      
+      
+    
+    
+    
+</script>
