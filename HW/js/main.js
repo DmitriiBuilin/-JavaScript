@@ -4,6 +4,7 @@ class ProductList{
         this.goods = [];
         this._fetchProducts();//рекомендация, чтобы метод был вызван в текущем классе
         this.render();//вывод товаров на страницу
+        this.getTotalprice();
     }
     _fetchProducts(){
         this.goods = [
@@ -21,7 +22,13 @@ class ProductList{
             },
         ];
     }
-    
+    getTotalprice(){
+        let sum = 0;
+        this.goods.forEach((element) => {
+            sum += element.price;
+        });
+        console.log(`Sum of all goods = ${sum}`);
+    };
     render(){
         const block = document.querySelector(this.container);
         for(let product of this.goods){
