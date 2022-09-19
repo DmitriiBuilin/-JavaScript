@@ -1,3 +1,43 @@
+"use strict";
+
+class CartBox {
+    constructor(container){
+        this.container = container;
+        this.goods = [];
+    }
+    /* Метод выводит список товаров добавленных в корзину
+     */
+    render(){}
+    /* Метод формирует массив элементов состоящий из товаров добавленных в корзину
+     */
+    productList(){}
+    /* Метод считает и выводит общую сумму товаров добавленных в корзину
+     */
+    getTotalprice(){}
+}
+
+class CartBoxElement {
+    constructor(product){
+        this.id = product.id;
+        this.title = product.title;
+        this.price = product.price;
+        this.qty = product.qty;
+    }
+    /* Метод выводит карточку товара в корзине с учетом заказанного количества.
+    *  Формирует верстку карточки.
+    */
+    render(){}
+    /* Метод увеличивает количество товара в корзине
+    */
+    increaseQty(){}
+    /* Метод уменьшает количество товара в корзине
+    */
+    reduceQty(){}
+    /* Метод удаляет товар из корзины
+    */
+    removeProduct(){}
+}
+
 class ProductList{
     constructor(container='.products'){
         this.container = container;
@@ -22,13 +62,15 @@ class ProductList{
             },
         ];
     }
+    /*Метод выводит в консоль суммарную стоимость всех товаров
+     */
     getTotalprice(){
         let sum = 0;
         this.goods.forEach((element) => {
             sum += element.price;
         });
         console.log(`Sum of all goods = ${sum}`);
-    };
+    }
     render(){
         const block = document.querySelector(this.container);
         for(let product of this.goods){

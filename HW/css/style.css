@@ -23,6 +23,15 @@ header {
 
 .btn-cart:hover {
     cursor: pointer;
+    transition: 500ms;
+    background-color: black;
+    color: white;
+}
+
+.btn-cart:active {
+    transition: 0ms;
+    background-color: white;
+    color: black;
 }
 
 .products {
@@ -55,8 +64,17 @@ header {
 
 .buy-btn:hover {
     cursor: pointer;
-    color: blueviolet;
+    color: white;
     border-color: blueviolet;
+    transition: 500ms;
+    background-color: blueviolet;
+}
+
+.buy-btn:active {
+    border-color: black;
+    color: black;
+    background-color: white;
+    transition: 0ms;
 }
 
 .product-item-name {
