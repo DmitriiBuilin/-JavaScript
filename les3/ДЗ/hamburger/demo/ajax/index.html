@@ -1,0 +1,13 @@
+<meta charset="UTF-8">
+<div></div>
+<script>
+  // fetch() - это функция, которая выполняет ajax запрос к серверу и возращает объект Promise
+
+  fetch("phonebook.json")
+    .then(text => text.json())//json - это метод, который преобразует строку json в объект js и возвращает Promise
+    .then(data => {//data - это массив объектов
+        data.forEach(item=>{
+            document.querySelector('div').insertAdjacentHTML('beforeend',`${item.name} имеет телефон ${item.phone}<hr>`);
+        });
+    });
+</script>

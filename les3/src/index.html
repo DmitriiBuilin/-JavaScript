@@ -1,0 +1,56 @@
+<meta charset="utf-8">
+<script>
+    // let userJson = '{"name":"Иван","age":25,"isAdmin":true}';
+    // let user = JSON.parse(userJson);
+    // user.dateCreated = '2022-09-17';
+    // user.address = {
+    //     city:'Москва',
+    //     postalCode:'4100082'
+    // }
+    // // Преобразование объекта в JSON строку
+    // let user2 = JSON.stringify(user,null,4);
+    // // console.log(user2);
+    // let user3 = JSON.parse(user2,(key,value)=>{
+    //     if(key == 'dateCreated'){
+    //         value = new Date(value);
+    //     }
+    //     return value;
+    // });
+    // console.log(user3);
+
+    // Асинхронность
+
+    // const async = a =>{
+    //     setTimeout(()=>{
+    //         const b = a + 1;
+    //         return b;
+    //     },3000);
+    //     return 5000;
+    // }
+    //
+    // console.log(async(5));
+
+    // Промис - это объект, который гарантирует, что созданные в нем асинхронные
+    // функции будут выполнены
+
+    let num = a =>{
+        return new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                if(a){
+                    resolve(a + 10);//после resolve запускается обработчик промиса then
+                }else{
+                    reject('error');//после reject выполняется обработчик промиса catch
+                }
+            },3000);
+            return 5000;
+        });
+    };
+
+    num(5)
+        .then(data=>{
+            console.log(data);
+        })
+        .catch(error=>{
+            console.log(error);
+    })
+</script>

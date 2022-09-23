@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let usd = 0;
+        async function f() {
+            await fetch("https://www.cbr-xml-daily.ru/daily_json.js")
+                .then(text => text.json())
+                .then(data=>{//data - массив объектов
+                    usd = data.Valute.USD.Value;
+                });
+            console.log(usd);
+        }
+        f();
+
+    </script>
+</body>
+</html>

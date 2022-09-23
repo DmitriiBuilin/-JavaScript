@@ -1,0 +1,7 @@
+<script>
+fetch("https://www.cbr-xml-daily.ru/daily_json.js")
+    .then(text => text.json())//json - это метод, который преобразует строку json в объект js и возвращает Promise
+    .then(data => {//data - это массив объектов
+        console.log(`Курс доллара на сегодня ` + data.Valute.USD.Value);
+    });
+</script>
