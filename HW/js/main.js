@@ -4,15 +4,33 @@ const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-a
 
 class CartBox {
     constructor(container){
-        this.container = container;
+        this.container = '.cart-list';
         this.goods = [];
+        this.getProductList()
+            .then(data => {
+                this.goods.contents = data;
+                // console.log(this.goods.contents);
+                this.render()
+            });
     }
     /* Метод выводит список товаров добавленных в корзину
      */
-    render(){}
+    render(){
+        const block = document.querySelector(this.container);
+        for(let product of this.goods.contents.contents){
+             const item = new CartBoxElement(product);
+             block.insertAdjacentHTML("beforeend",item.render());
+        }
+    }
     /* Метод формирует массив элементов состоящий из товаров добавленных в корзину
      */
-    productList(){}
+    getProductList(){
+        return fetch(`${API}/getBasket.json`)
+            .then(result => result.json())
+            .catch(error => {
+                console.log(error);
+            });
+    }
     /* Метод увеличивает количество товара в корзине
     */
     increaseQty(){}
@@ -28,16 +46,25 @@ class CartBox {
 }
 
 class CartBoxElement {
-    constructor(product){
-        this.id = product.id;
-        this.title = product.title;
+    constructor(product, img = 'https://android.ktfix.it/wp-content/uploads/2018/11/hardware-1.jpg'){
+        this.id = product.id_product;
+        this.title = product.product_name;
         this.price = product.price;
-        this.qty = product.qty;
+        this.qty = product.quantity;
+        this.img = img;
     }
     /* Метод выводит карточку товара в корзине с учетом заказанного количества.
     *  Формирует верстку карточки.
     */
-    render(){}
+    render(){
+        return `<div class="cart-product-item" data-id="${this.id}">
+                    <img class="cart-image" src="${this.img}" alt="image">
+                    <h3 class="">${this.title}</h3>
+                    <p class="">${this.price}</p>
+                    <p class="">${this.qty}</p>
+                    <button class="">Удалить</button>
+                </div>`
+    }
 }
 
 class ProductList{
@@ -50,7 +77,6 @@ class ProductList{
                 this.goods = data;
                 this.render()
             });
-        this.render();//вывод товаров на страницу
         this.getTotalprice();
     }
     // _fetchProducts(){
@@ -74,8 +100,7 @@ class ProductList{
             .then(result => result.json())
             .catch(error => {
                 console.log(error);
-            });
-       
+            });       
     }
     /*Метод выводит в консоль суммарную стоимость всех товаров
      */
@@ -99,14 +124,13 @@ class ProductList{
 class ProductItem{
     constructor(product, img = 'https://android.ktfix.it/wp-content/uploads/2018/11/hardware-1.jpg'){
         this.title = product.product_name;
-        this.id = product.id;
+        this.id = product.id_product;
         this.price = product.price;
         this.img = img;
     }
     render(){
-        return `<div class="product-item">
-                    <img class="product-item-img" src="${this.img}"
-                        alt="image">
+        return `<div class="product-item" data-id="${this.id}">
+                    <img class="product-item-img" src="${this.img}" alt="image">
                     <h3 class="product-item-name">${this.title}</h3>
                     <p class="product-item-price">${this.price}</p>
                     <button class="buy-btn">Купить</button>
@@ -115,6 +139,7 @@ class ProductItem{
 }
 
 let list = new ProductList();
+let cart = new CartBox();
 
 
 // const products = [
@@ -141,3 +166,11 @@ let list = new ProductList();
 // };
 
 // renderPage(products);
+
+document.querySelector('.header-wrp').addEventListener('click', event => {
+    if (!event.target.classList
+        .contains('btn-cart')) {
+            return;
+    }
+    document.querySelector('.cart-list').classList.toggle('hidden')
+});
