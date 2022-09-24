@@ -1,5 +1,7 @@
 "use strict";
 
+const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
+
 class CartBox {
     constructor(container){
         this.container = container;
@@ -11,6 +13,15 @@ class CartBox {
     /* Метод формирует массив элементов состоящий из товаров добавленных в корзину
      */
     productList(){}
+    /* Метод увеличивает количество товара в корзине
+    */
+    increaseQty(){}
+    /* Метод уменьшает количество товара в корзине
+    */
+    reduceQty(){}
+    /* Метод удаляет товар из корзины
+    */
+    removeProduct(){}
     /* Метод считает и выводит общую сумму товаров добавленных в корзину
      */
     getTotalprice(){}
@@ -27,40 +38,44 @@ class CartBoxElement {
     *  Формирует верстку карточки.
     */
     render(){}
-    /* Метод увеличивает количество товара в корзине
-    */
-    increaseQty(){}
-    /* Метод уменьшает количество товара в корзине
-    */
-    reduceQty(){}
-    /* Метод удаляет товар из корзины
-    */
-    removeProduct(){}
 }
 
 class ProductList{
     constructor(container='.products'){
         this.container = container;
         this.goods = [];
-        this._fetchProducts();//рекомендация, чтобы метод был вызван в текущем классе
+        // this._fetchProducts();//рекомендация, чтобы метод был вызван в текущем классе
+        this._getProducts()
+            .then(data => { //data - объект js
+                this.goods = data;
+                this.render()
+            });
         this.render();//вывод товаров на страницу
         this.getTotalprice();
     }
-    _fetchProducts(){
-        this.goods = [
-            {id: 1, title: 'Notebook', price: 2000, img: 
-                'https://android.ktfix.it/wp-content/uploads/2018/11/hardware-1.jpg'
-            },
-            {id: 2, title: 'Mouse', price: 20, img: 
-                'https://massaget.kz/userdata/news/news_48920/image_l.jpg'
-            },
-            {id: 3, title: 'Keyboard', price: 200, img: 
-                'https://invexpert.ru/wp-content/uploads/d/2/6/d26d81857353d5381b6523be34fc8e73.jpeg'
-            },
-            {id: 4, title: 'Gamepad', price: 50, img: 
-                'https://smartfonoff.mobi/wp-content/uploads/2016/01/Exynos-8890-vs-Kirin-950.jpg'
-            },
-        ];
+    // _fetchProducts(){
+    //     this.goods = [
+    //         {id: 1, title: 'Notebook', price: 2000, img: 
+    //             'https://android.ktfix.it/wp-content/uploads/2018/11/hardware-1.jpg'
+    //         },
+    //         {id: 2, title: 'Mouse', price: 20, img: 
+    //             'https://massaget.kz/userdata/news/news_48920/image_l.jpg'
+    //         },
+    //         {id: 3, title: 'Keyboard', price: 200, img: 
+    //             'https://invexpert.ru/wp-content/uploads/d/2/6/d26d81857353d5381b6523be34fc8e73.jpeg'
+    //         },
+    //         {id: 4, title: 'Gamepad', price: 50, img: 
+    //             'https://smartfonoff.mobi/wp-content/uploads/2016/01/Exynos-8890-vs-Kirin-950.jpg'
+    //         },
+    //     ];
+    // }
+    _getProducts(){      
+        return fetch(`${API}/catalogData.json`)
+            .then(result => result.json())
+            .catch(error => {
+                console.log(error);
+            });
+       
     }
     /*Метод выводит в консоль суммарную стоимость всех товаров
      */
@@ -82,11 +97,11 @@ class ProductList{
 }
 
 class ProductItem{
-    constructor(product){
-        this.title = product.title;
+    constructor(product, img = 'https://android.ktfix.it/wp-content/uploads/2018/11/hardware-1.jpg'){
+        this.title = product.product_name;
         this.id = product.id;
         this.price = product.price;
-        this.img = product.img;
+        this.img = img;
     }
     render(){
         return `<div class="product-item">
