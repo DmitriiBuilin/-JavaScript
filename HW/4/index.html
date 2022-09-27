@@ -7,6 +7,7 @@
     <title>lesson 4</title>
 </head>
 <body>
+        <!-- Задание №1, 2 -->
     <p>
         One: 'Hi Mary.' 
         Two: 'Oh, hi.'
@@ -26,19 +27,56 @@
         Two: 'I'll see you next time.'
         One: 'Sure. Bye.'
     </p>
+
+        <!-- Задание №3 -->
+        
+        <form>
+            <p></p>
+            <input id="1" type="text" placeholder="Name">
+            <p></p>
+            <input id="2" type="tel" placeholder="+7(555)123-4567">
+            <p></p>
+            <input id="3" type="email" placeholder="test@test.ru">
+            <p></p>
+            <input id="4" type="text" placeholder="Any text">
+            <button>Check</button>            
+        </form>
+
     <script>
         "use strict";
 
+        let text =  document.querySelector('p').textContent;
+
         //Задание №1
-        // document.querySelector('p').textContent = 
-        // document.querySelector('p').textContent.replace(/'/g, '"');
+        document.querySelector('p').textContent = 
+        document.querySelector('p').textContent.replace(/'/g, '"');
 
         //Задание №2
+        text = text.replace(/\B'|'\B/g, '"');
+        document.querySelector('p').
+        insertAdjacentHTML('afterend', `<p>${text}</p>` );
 
-        let newText = document.querySelector('p').textContent.match(/[a-z,A-Z]'+/g, '"');
+        //Задание №3
 
-        document.querySelector('p').insertAdjacentHTML('afterend', `<p>${newText}</p>` )
 
+
+        document.querySelector('button').addEventListener('click', event => {
+            event.preventDefault();
+            let inp1 = document.getElementById('1').value;
+            let inp2 = document.getElementById('2').value;
+            let inp3 = document.getElementById('3').value;
+         
+            let inpcheck1 = inp1.match(/^[a-zа-яё]+$/i)
+            let inpcheck2 = inp2.match(/^\+7\(\d{3}\)\d{3}-\d{4}$/i)
+            let inpcheck3 = inp3.match(/^[a-zа-я0-9._-]+@[a-z0-9-_]+\.[a-z0-9-_]{2,4}/i)
+
+            let chekList = document.querySelectorAll('input')
+           
+
+            if (inpcheck1 === null || inpcheck2 === null || inpcheck3 === null) {
+                document.querySelector('form').insertAdjacentHTML('afterend', 'Ошибка ввода');
+            }
+        });
         
     </script>
 </body>
