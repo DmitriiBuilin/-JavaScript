@@ -1,21 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/normalize.css">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Интернет-магазин</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/normalize.css">
 </head>
 <body>
-    <header>
-        <div class="header-wrp">
-            <button class="btn-cart" type="button">Корзина</button>
-            <div class="cart-list"></div>
-        </div>
-        
-    </header>
-    <main>
-        <div class="products"></div>
-    </main>
+    <div id="app">
+        <header>
+            <div class="header-wrp">
+                <form action="#" class="search-form" @submit.prevent="filter">
+                    <input type="text" class="search-field" v-model="userSearch">
+                    <button class="btn-search" type="submit">Search
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+                <button class="btn-cart" type="button">Корзина</button>
+                <div class="cart-list hidden"></div>
+            </div>
+            
+        </header>   
+        <main>
+            <div class="products">
+                <div class="product-item" v-for="product of filtered" :key="product.id_product">
+                    <img class="product-item-img" :src="imgCatalog" alt="Some img">
+                    <!-- <div class="desc"> -->
+                        <h3 class="product-item-name">{{product.product_name}}</h3>
+                        <p class="product-item-price">{{product.price}} $</p>
+                        <button class="buy-btn" @click="addProduct(product)">Купить</button>
+                    <!-- </div> -->
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
     <script src="js/main.js"></script>
 </body>
+</html>
