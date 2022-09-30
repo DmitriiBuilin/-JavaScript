@@ -8,16 +8,19 @@ class CartBox {
         this.goods = [];
         this.getProductList()
             .then(data => {
-                this.goods.contents = data;
-                // console.log(this.goods.contents);
-                this.render()
+                this.goods = data.contents;
+                this.render();
+                this.removeProduct(); 
+                this.getTotalSum();
             });
+        
+           
     }
     /* Метод выводит список товаров добавленных в корзину
      */
     render(){
         const block = document.querySelector(this.container);
-        for(let product of this.goods.contents.contents){
+        for(let product of this.goods){
              const item = new CartBoxElement(product);
              block.insertAdjacentHTML("beforeend",item.render());
         }
@@ -39,10 +42,29 @@ class CartBox {
     reduceQty(){}
     /* Метод удаляет товар из корзины
     */
-    removeProduct(){}
+    removeProduct(){
+        document.querySelector('.cart-list').addEventListener('click', event => {
+            if (!event.target.classList
+                .contains('remove-cart-button')) {
+                    return;          
+            }
+            let getId = event.target.getAttribute('id');
+            let findId = this.goods.findIndex(el => el.id_product == getId);
+            this.goods.splice(findId, 1);
+            document.getElementById(getId).remove();
+            document.querySelector('.total-sum').remove();
+            this.getTotalSum()
+        });
+    }
     /* Метод считает и выводит общую сумму товаров добавленных в корзину
      */
-    getTotalprice(){}
+    getTotalSum(){
+        let sum = 0;
+        this.goods.forEach((element) => {
+            sum += element.price;
+        });
+        document.querySelector(this.container).insertAdjacentHTML("beforeend", `<div class="total-sum">Общая сумма товаров: ${sum} $</div>`)
+    }
 }
 
 class CartBoxElement {
@@ -57,12 +79,14 @@ class CartBoxElement {
     *  Формирует верстку карточки.
     */
     render(){
-        return `<div class="cart-product-item" data-id="${this.id}">
+        return `<div class="cart-product-item" id="${this.id}">
                     <img class="cart-image" src="${this.img}" alt="image">
                     <h3 class="">${this.title}</h3>
-                    <p class="">${this.price}</p>
-                    <p class="">${this.qty}</p>
-                    <button class="">Удалить</button>
+                    <p class="">Цена: ${this.price} $</p>
+                    <p class="">Количество: ${this.qty}</p>
+                    <button class="remove-cart-button" id="${this.id}">Удалить</button>
+                    <button class="reduce-cart-button" id="${this.id}">-</button>
+                    <button class="increase-cart-button" id="${this.id}">+</button>
                 </div>`
     }
 }
@@ -77,7 +101,6 @@ class ProductList{
                 this.goods = data;
                 this.render()
             });
-        this.getTotalprice();
     }
     // _fetchProducts(){
     //     this.goods = [
@@ -102,15 +125,7 @@ class ProductList{
                 console.log(error);
             });       
     }
-    /*Метод выводит в консоль суммарную стоимость всех товаров
-     */
-    getTotalprice(){
-        let sum = 0;
-        this.goods.forEach((element) => {
-            sum += element.price;
-        });
-        console.log(`Sum of all goods = ${sum}`);
-    }
+
     render(){
         const block = document.querySelector(this.container);
         for(let product of this.goods){
