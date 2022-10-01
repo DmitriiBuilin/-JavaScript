@@ -9,6 +9,7 @@ const app = new Vue({
         catalogUrl: '/catalogData.json',
         products: [],
         filtered: [],
+        cart: [],
         imgCatalog: 'https://android.ktfix.it/wp-content/uploads/2018/11/hardware-1.jpg',
         userSearch: '',
         show: false
@@ -26,7 +27,26 @@ const app = new Vue({
                 })
         },
         addProduct(product){
-                console.log(product.id_product);
+            console.log(product);
+                let find = this.cart.find(item => product.id_product === item.id_product);
+                if(find){
+                    find.quantity++;
+                }else{
+                    this.$set(product,'quantity',1);
+                    this.cart.push(product);
+                }
+        },
+        removeProduct(){
+
+        },
+        reduceQty(product){
+            if(product.quantity > 1){
+                product.quantity--;
+            }
+            
+        },
+        increaseQty(product){
+            product.quantity++;
         }
     },
     mounted(){
@@ -37,12 +57,6 @@ const app = new Vue({
                }
                this.filtered = this.products;
            });
-        // this.getJson(`getProducts.json`)
-        //     .then(data => {
-        //         for(let el of data){
-        //             this.products.push(el);
-        //         }
-        //     })
     }
 })
 
