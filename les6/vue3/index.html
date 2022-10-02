@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-on:input="setText">
+<!--        <input type="text" v-model="text">-->
+        <p v-bind:style="{'color':color,fontSize: size + 'px'}">{{ text }}</p>
+        <h2 ref="x">Привет</h2>
+        <button @click="show">ok</button>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        Vue.createApp({
+            data(){
+                return {
+                    text:'Welcome',
+                    color:'red',
+                    size:40
+                }
+            },
+            methods:{
+                setText(e){
+                    this.text = e.target.value;
+                },
+                show(){
+                    this.$refs.x.innerText = "Добрый день"
+                }
+
+            }
+        }).mount("#app");
+    </script>
+</body>
+</html>
