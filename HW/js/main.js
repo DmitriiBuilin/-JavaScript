@@ -7,6 +7,7 @@ const app = new Vue({
     el: '#app',
     data: {
         catalogUrl: '/catalogData.json',
+        cartUrl: '/getBasket.json',
         products: [],
         filtered: [],
         cart: [],
@@ -28,6 +29,7 @@ const app = new Vue({
         },
         addProduct(product){
             console.log(product);
+            console.log(this.cart);
                 let find = this.cart.find(item => product.id_product === item.id_product);
                 if(find){
                     find.quantity++;
@@ -50,12 +52,19 @@ const app = new Vue({
         }
     },
     mounted(){
+        this.getJson(`${API + this.cartUrl}`)
+        .then(data => {
+            for (let item of data.contents){
+                this.cart.push(item);
+            }
+        });
        this.getJson(`${API + this.catalogUrl}`)
            .then(data => {
                for(let el of data){
                    this.products.push(el);
+                   this.filtered.push(el);
                }
-               this.filtered = this.products;
+            //    this.filtered = this.products;
            });
     }
 })
