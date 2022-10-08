@@ -2,10 +2,6 @@ header {
     background-color: rgb(198, 160, 233);
 }
 
-.hidden {
-    visibility: hidden;
-}
-
 .header-wrp {
     display: flex;
     justify-content: flex-end;
@@ -38,20 +34,6 @@ header {
     color: black;
 }
 
-.cart-list {
-    width: 700px;
-    background-color: white;
-    box-shadow: 3px 4px 17px black;
-    position: absolute;
-    top: 70px;
-}
-
-.cart-product-item {
-    margin: 20px;
-    padding: 8px;
-    border: 1px solid black;
-}
-
 .products {
     display: flex;
     justify-content: space-between;
@@ -72,14 +54,6 @@ header {
 
 .product-item-img {
     width: 200px;
-}
-
-.cart-image {
-    width: 120px;
-}
-
-.cart-list {
-    display: flex;
 }
 
 .buy-btn {
