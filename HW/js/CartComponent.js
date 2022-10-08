@@ -5,7 +5,7 @@ Vue.component('cart', {
         <cart-item v-for="product of cart" 
         :key="product.id_product" 
         :img="img" 
-        :cart-item="product"
+        :product="product"
         ></cart-item>
     </div>
     `
@@ -20,8 +20,8 @@ Vue.component('cart-item', {
             <p class="">Цена: {{product.price}} $</p>
             <p class="">Количество: <span>{{product.quantity}}</span></p>
             <button class="remove-cart-button" :key="product.id_product" @click="$root.removeProduct(product)">Удалить</button>
-            <button class="reduce-cart-button" :key="product.id_product" @click="$root.reduceQty(product)">-</button>
-            <button class="increase-cart-button" :key="product.id_product" @click="$root.increaseQty(product)">+</button>
+            <button class="reduce-cart-button" @click="$root.reduceQty(product)">-</button>
+            <button class="increase-cart-button" @click="$root.increaseQty(product)">+</button>
         </div>
     `
 });

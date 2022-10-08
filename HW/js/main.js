@@ -57,15 +57,18 @@ const app = new Vue({
             for (let item of data.contents){
                 this.cart.push(item);
             }
+            
         });
-       this.getJson(`${API + this.catalogUrl}`)
+        this.getJson(`${API + this.catalogUrl}`)
            .then(data => {
                for(let el of data){
                    this.products.push(el);
                    this.filtered.push(el);
                }
             //    this.filtered = this.products;
-           });
+            
+        });
+
     }
 })
 
