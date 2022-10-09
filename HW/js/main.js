@@ -61,14 +61,12 @@ const app = new Vue({
             }
             this.countItems = this.cart.length;
         });
-        this.getJson(`${API+this.catalogUrl}`)
+        this.getJson(`${API + this.catalogUrl}`)
            .then(data => {
                for(let el of data){
                    this.products.push(el);
                    this.filtered.push(el);
-               }
-            //    this.filtered = this.products;
-            
+               }            
         });
 
     }
