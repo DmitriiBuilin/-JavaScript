@@ -14,7 +14,8 @@ const app = new Vue({
         imgCatalog: 'https://android.ktfix.it/wp-content/uploads/2018/11/hardware-1.jpg',
         userSearch: '',
         countItems: '',
-        show: false
+        showCart: false,
+        showSorter: false,
     },
     methods: {
         filter(){
@@ -29,8 +30,6 @@ const app = new Vue({
                 })
         },
         addProduct(product){
-            console.log(product);
-            console.log(this.cart);
                 let find = this.cart.find(item => product.id_product === item.id_product);
                 if(find){
                     find.quantity++;
@@ -60,7 +59,6 @@ const app = new Vue({
             for (let item of data.contents){
                 this.cart.push(item);
             }
-            console.log(this.cart);
             this.countItems = this.cart.length;
         });
         this.getJson(`${API + this.catalogUrl}`)

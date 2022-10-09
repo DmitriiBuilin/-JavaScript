@@ -1083,8 +1083,9 @@ input[type=checkbox]:checked ~ .catalog-filter-list {
 
 .catalog-filter-sections {
         display: flex;
-        align-items: flex-end;
+        align-items: flex-start;
         margin-left: 304px;
+        justify-content: flex-end;
 }
 
 input[type=checkbox]:checked ~ .filter-size-options {
@@ -1096,7 +1097,7 @@ input[type=checkbox]:checked ~ .filter-size-options {
 }
 
 .filter-size-options {
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: space-around;
     margin-left: 31px;
@@ -1107,7 +1108,16 @@ input[type=checkbox]:checked ~ .filter-size-options {
     box-shadow: 6px 4px 35px rgba(0, 0, 0, 0.21);
     position: absolute;
     z-index: 20;
-
+    list-style: none;
+    text-transform: uppercase;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #6F6E6E;
+    margin-top: 40px;
+    margin-right: 78px;
 }
 
 .filter-size-options label {
@@ -1834,6 +1844,10 @@ display: flex;
 
 .catalog-filter-elements-popup {
     display: block !important;
+}
+
+.catalog-filter-elements li:hover {
+    cursor: pointer;
 }
 
 .join-now-button {
