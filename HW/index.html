@@ -1,22 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/normalize.css">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Интернет-магазин</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/normalize.css">
 </head>
 <body>
-    <header>
-        <div class="header-wrp">
-            <button class="btn-cart" type="button">Корзина</button>
-            <div class="cart-list hidden"></div>
-        </div>
-        
-    </header>
-    <main>
-        <div class="products"></div>
-    </main>
+    <div id="app">
+        <header>
+            <div class="header-wrp">
+                <button class="btn-cart" type="button" @click="show=!show">Корзина</button>
+                <search></search>
+                <cart 
+                :cart="cart"
+                :img="imgCatalog"
+                :visibility="show"   
+                ></cart>
+
+                <!-- <div class="cart-list" v-show="show">
+                    <div class="cart-product-item" :key="product.id_product"  v-for="product of cart">
+                        <img class="cart-image" :src="imgCatalog" alt="image">
+                        <h3 class="">{{product.product_name}}</h3>
+                        <p class="">Цена: {{product.price}} $</p>
+                        <p class="">Количество: <span>{{product.quantity}}</span></p>
+                        <button class="remove-cart-button" :key="product.id_product" @click="removeProduct(product)">Удалить</button>
+                        <button class="reduce-cart-button" :key="product.id_product" @click="reduceQty(product)">-</button>
+                        <button class="increase-cart-button" :key="product.id_product" @click="increaseQty(product)">+</button>
+                     </div>
+                </div> -->
+            </div>
+            
+        </header>   
+        <main>
+            <products 
+            :products="filtered" 
+            :img="imgCatalog"
+            @add-product="addProduct"
+            ></products>
+            <!-- <div class="products">
+                <div class="product-item" v-for="product of filtered" :key="product.id_product">
+                    <img class="product-item-img" :src="imgCatalog" alt="Some img">
+                        <h3 class="product-item-name">{{product.product_name}}</h3>
+                        <p class="product-item-price">{{product.price}} $</p>
+                        <button class="buy-btn" @click="addProduct(product)">Купить</button>
+                </div>
+            </div> -->
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/ProductComponent.js"></script>
+    <script src="js/CartComponent.js"></script>
+    <script src="js/SearchComponent.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
