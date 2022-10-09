@@ -13,7 +13,9 @@ const app = new Vue({
         cart: [],
         imgCatalog: 'https://android.ktfix.it/wp-content/uploads/2018/11/hardware-1.jpg',
         userSearch: '',
-        show: false
+        countItems: '',
+        showCart: false,
+        showSorter: false,
     },
     methods: {
         filter(){
@@ -28,18 +30,18 @@ const app = new Vue({
                 })
         },
         addProduct(product){
-            console.log(product);
-            console.log(this.cart);
                 let find = this.cart.find(item => product.id_product === item.id_product);
                 if(find){
                     find.quantity++;
                 }else{
                     this.$set(product,'quantity',1);
                     this.cart.push(product);
+                    this.countItems = this.cart.length;
                 }
         },
         removeProduct(product){
-            this.cart.splice(this.cart.indexOf(product), 1)
+            this.cart.splice(this.cart.indexOf(product), 1);
+            this.countItems = this.cart.length;
         },
         reduceQty(product){
             if(product.quantity > 1){
@@ -57,9 +59,9 @@ const app = new Vue({
             for (let item of data.contents){
                 this.cart.push(item);
             }
-            
+            this.countItems = this.cart.length;
         });
-        this.getJson(`${API + this.catalogUrl}`)
+        this.getJson(`API/catalog.json`)
            .then(data => {
                for(let el of data){
                    this.products.push(el);
@@ -70,7 +72,10 @@ const app = new Vue({
         });
 
     }
+    
 })
+
+
 
 // class CartBox {
 //     constructor(container){
