@@ -1,46 +1,46 @@
 [
     {
-      "id_product": 001,
+      "id_product": 1,
       "product_name": "BLUE JACKET",
       "price": 100.00
     },
     {
-        "id_product": 002,
+        "id_product": 2,
         "product_name": "RED JACKET",
         "price": 200.00
     },
     {
-        "id_product": 003,
+        "id_product": 3,
         "product_name": "HOODIE",
         "price": 300.00
     },
     {
-        "id_product": 004,
+        "id_product": 4,
         "product_name": "YELLOW PANTS",
         "price": 400.00
     },
     {
-        "id_product": 005,
+        "id_product": 5,
         "product_name": "WHITE T-SHIRT",
         "price": 500.00
     },
     {
-        "id_product": 006,
+        "id_product": 6,
         "product_name": "BLUE CAP",
         "price": 600.00
     },
     {
-        "id_product": 007,
+        "id_product": 7,
         "product_name": "BLACK BELT",
         "price": 700.00
     },
     {
-        "id_product": 008,
+        "id_product": 8,
         "product_name": "BEATIFULL HAT",
         "price": 800.00
     },
     {
-        "id_product": 009,
+        "id_product": 9,
         "product_name": "GREEN T-SHIRT",
         "price": 900.00
     }
