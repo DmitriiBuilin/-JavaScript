@@ -10,8 +10,8 @@ const app = new Vue({
         cartUrl: '/getBasket.json',
         products: [],
         filtered: [],
-        cart: [],
-        imgCatalog: 'https://android.ktfix.it/wp-content/uploads/2018/11/hardware-1.jpg',
+        cart: JSON.parse(localStorage.getItem('cartSave')),
+        imgCatalog: '',
         userSearch: '',
         countItems: '',
         showCart: false,
@@ -37,37 +37,42 @@ const app = new Vue({
                     this.$set(product,'quantity',1);
                     this.cart.push(product);
                     this.countItems = this.cart.length;
+                    localStorage.setItem('cartSave', JSON.stringify(this.cart));
                 }
         },
         removeProduct(product){
             this.cart.splice(this.cart.indexOf(product), 1);
             this.countItems = this.cart.length;
+            localStorage.setItem('cartSave', JSON.stringify(this.cart));
         },
         reduceQty(product){
             if(product.quantity > 1){
                 product.quantity--;
+                localStorage.setItem('cartSave', JSON.stringify(this.cart));
             }
             
         },
         increaseQty(product){
             product.quantity++;
+            localStorage.setItem('cartSave', JSON.stringify(this.cart));
         }
     },
     mounted(){
-        this.getJson(`${API + this.cartUrl}`)
-        .then(data => {
-            for (let item of data.contents){
-                this.cart.push(item);
-            }
-            this.countItems = this.cart.length;
-        });
-        this.getJson(`${API + this.catalogUrl}`)
-           .then(data => {
-               for(let el of data){
-                   this.products.push(el);
-                   this.filtered.push(el);
-               }            
-        });
+        // this.getJson(`${API + this.cartUrl}`)
+        // .then(data => {
+        //     for (let item of data.contents){
+        //         this.cart.push(item);
+        //     }
+        //     this.countItems = this.cart.length;
+        // });
+        this.getJson(`newCatalog.json`)
+            .then(data => {
+                for(let el of data){
+                    this.products.push(el);
+                    this.filtered.push(el);
+                    this.countItems = this.cart.length;
+                }
+        })
 
     }
     
