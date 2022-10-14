@@ -67,13 +67,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-left: 6px;
 }
 
 .top-right-block {
     width: 169px;
     display: flex;
     align-items: center;
-
+    margin-right: 6px;
 }
 
 .login-button{
@@ -206,11 +207,20 @@ input[type=checkbox]:checked ~ .pop-up-menu {
     border: none;
     background: none;
     position: relative;
-    margin: 28px 22px 0 0;
+    top: 6px;
+    right: 13px;
+    scale: 0.6;
 } 
 
 .shopping-cart-close-button:hover {
+    -moz-transform: scale(1.4);
+    -webkit-transform: scale(1.4);
+    -o-transform: scale(1.4);
+    -ms-transform: scale(1.4);
+    transform: scale(1.4);
     cursor: pointer;
+    transition: linear 0.1s;
+    
 }
 .shopping-cart-close-button::before {
     content: "";
@@ -512,6 +522,7 @@ input[type=checkbox]:checked ~ .pop-up-menu {
     align-content: center;
     flex-wrap: wrap;
     margin-bottom: 50px;
+    width: 100%;
 }
 
 .product-cards-item {
@@ -1340,11 +1351,11 @@ input[type="checkbox"] {
     display: flex;
     left: 0;
     width: 100%;
-    max-width: 652px;
-    height: 306px;
+    max-width: 285px;
+    height: 130px;
     background-color: #FFFFFF;
     box-shadow: 0 30px 30px 0 rgba(33, 34, 34, 0.2);
-    margin: 0 0 40px 0;
+    margin: 5px 0 5px 0;
 }
 
 .shopping-cart-item img {
@@ -1353,7 +1364,7 @@ input[type="checkbox"] {
 }
 
 .shopping-cart-description {
-    margin: 0 0 0 31px;
+    margin: 0 0 0 8px;
     width: 100%;
     max-width: 390px;
 }
@@ -1362,21 +1373,21 @@ input[type="checkbox"] {
     text-transform: uppercase;
     font-family: 'Lato';
     font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
+    font-weight: 700;
+    font-size: 18px;
     line-height: 29px;
     color: #222222;
-    margin: 22px 0 42px 0;
+    margin: 8px 0 0 0;
 }
 
 .shopping-cart-description p {
     font-family: 'Lato';
     font-style: normal;
     font-weight: 400;
-    font-size: 22px;
+    font-size: 14px;
     line-height: 26px;
     color: #575757;
-    margin: 0 0 6px;
+    margin: 0 0 4px;
 }
 
 .shopping-cart-description span {
@@ -1385,13 +1396,15 @@ input[type="checkbox"] {
 
 .shopping-cart-description-quantity {
     display: flex;
+    align-items: center;
 }
 
 .shopping-cart-description-quantity input {
-    width: 43px;
-    height: 24px;
+    width: 34px;
+    height: 19px;
     margin: 0 0 0 24px;
-    text-indent: 16px;
+    text-indent: 0px;
+    text-align: center;
     border: 1px solid #EAEAEA;
     box-sizing: border-box;
 }
