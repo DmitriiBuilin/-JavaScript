@@ -7,7 +7,11 @@ app.use('/', express.static('.'));
 
 app.get('/catalogData', (req, res) => { 
     fs.readFile('server/db/catalog.json','utf8', (err, data)=> {
-         res.send(data); 
+        if(err){
+            console.log('Error');
+        } else {
+            res.send(data);
+        }
         }); 
 });
 
