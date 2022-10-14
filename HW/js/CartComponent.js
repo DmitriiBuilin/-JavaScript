@@ -4,7 +4,7 @@ Vue.component('cart', {
     <div class="cart-list" v-show="visibility">
         <cart-item v-for="product of cart" 
         :key="product.id_product" 
-        :img="img" 
+        :img="product.img" 
         :product="product"
         ></cart-item>
     </div>

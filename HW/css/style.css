@@ -74,19 +74,21 @@
 
 .cart-list {
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-end;
     justify-content: space-around;
     width: 700px;
     background-color: white;
-    box-shadow: 3px 4px 17px black;
+    box-shadow: 3px 4px 17px #222222;
     position: absolute;
     top: 70px;
+    z-index: 40;
 }
 
 .cart-product-item {
     margin: 20px;
     padding: 8px;
-    border: 3px solid blueviolet;
+    border: 3px solid black;
     border-radius: 5px;
 }
 
@@ -100,9 +102,9 @@
 .remove-cart-button:hover {
     cursor: pointer;
     color: white;
-    border-color: blueviolet;
+    border-color: #F16D7F;
     transition: 200ms;
-    background-color: blueviolet;
+    background-color: #F16D7F;
 }
 
 .reduce-cart-button, .increase-cart-button {
@@ -116,9 +118,9 @@
 .reduce-cart-button:hover, .increase-cart-button:hover {
     cursor: pointer;
     color: white;
-    border-color: blueviolet;
+    border-color: #F16D7F;
     transition: 200ms;
-    background-color: blueviolet;
+    background-color: #F16D7F;
 }
 
 .products {
