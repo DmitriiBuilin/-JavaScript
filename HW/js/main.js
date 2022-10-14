@@ -10,17 +10,38 @@ const app = new Vue({
         cartUrl: '/getBasket.json',
         products: [],
         filtered: [],
-        cart: JSON.parse(localStorage.getItem('cartSave')),
-        imgCatalog: '',
+        cart: [],
         userSearch: '',
         countItems: '',
         showCart: false,
         showSorter: false,
     },
     methods: {
+        // makeGETRequest(url, callback) { 
+             
+        // }, 
+        // makePOSTRequest(url, data, callback) { 
+        //     let xhr; 
+        //     if (window.XMLHttpRequest) { 
+        //         xhr = new XMLHttpRequest(); 
+        //     } else if (window.ActiveXObject) {
+        //          xhr = new ActiveXObject("Microsoft.XMLHTTP"); 
+        //         } 
+                
+        //         xhr.onreadystatechange = function () { 
+        //             if (xhr.readyState === 4) { 
+        //                 callback(xhr.responseText); 
+        //             } 
+        //         } 
+        //         xhr.open('POST', url, true); 
+        //         xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8'); 
+        //         xhr.send(data); 
+        // },
         filter(){
          const regexp = new RegExp(this.userSearch, 'i');
-         this.filtered = this.products.filter(product => regexp.test(product.product_name));
+         this.filtered = this.products.filter(
+            product => regexp.test(product.product_name)
+            );
         },
         getJson(url){
             return fetch(url)
@@ -30,50 +51,45 @@ const app = new Vue({
                 })
         },
         addProduct(product){
-                let find = this.cart.find(item => product.id_product === item.id_product);
+                let find = this.cart.find(
+                    item => product.id_product === item.id_product
+                    );
                 if(find){
                     find.quantity++;
                 }else{
                     this.$set(product,'quantity',1);
                     this.cart.push(product);
                     this.countItems = this.cart.length;
-                    localStorage.setItem('cartSave', JSON.stringify(this.cart));
+                    // localStorage.setItem('cartSave', JSON.stringify(this.cart));
                 }
         },
         removeProduct(product){
             this.cart.splice(this.cart.indexOf(product), 1);
             this.countItems = this.cart.length;
-            localStorage.setItem('cartSave', JSON.stringify(this.cart));
+            // localStorage.setItem('cartSave', JSON.stringify(this.cart));
         },
         reduceQty(product){
             if(product.quantity > 1){
                 product.quantity--;
-                localStorage.setItem('cartSave', JSON.stringify(this.cart));
+                // localStorage.setItem('cartSave', JSON.stringify(this.cart));
             }
             
         },
         increaseQty(product){
             product.quantity++;
-            localStorage.setItem('cartSave', JSON.stringify(this.cart));
+            // localStorage.setItem('cartSave', JSON.stringify(this.cart));
         }
     },
     mounted(){
-        // this.getJson(`${API + this.cartUrl}`)
-        // .then(data => {
-        //     for (let item of data.contents){
-        //         this.cart.push(item);
-        //     }
-        //     this.countItems = this.cart.length;
-        // });
-        this.getJson(`newCatalog.json`)
+        this.getJson(`/catalogData`)
             .then(data => {
                 for(let el of data){
                     this.products.push(el);
                     this.filtered.push(el);
-                    this.countItems = this.cart.length;
+                    // this.countItems = this.cart.length;
                 }
+                                
         })
-
     }
     
 })
