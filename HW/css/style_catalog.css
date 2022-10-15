@@ -551,6 +551,7 @@ input[type=checkbox]:checked ~ .pop-up-menu {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    transition: 1s;
 }
 
 .product-cards-item-image-darken:hover {
@@ -559,7 +560,7 @@ input[type=checkbox]:checked ~ .pop-up-menu {
     background: rgba(58, 56, 56, 0.86);
     background-blend-mode: darken;
     cursor: pointer;
-
+    
 
 }
 
@@ -937,6 +938,7 @@ ul.catalog-header-page-breadcrumb li a {
 
 ul.catalog-header-page-breadcrumb li a:hover {
     color: #F16D7F;
+    transition: 0.5s;
 }
 
 /* -- catalog filter -- */
@@ -1024,17 +1026,20 @@ input[type=checkbox]:checked ~ .catalog-filter-list {
     width: 70px;
     padding: 16px;
     position: relative;
+    
 }
 
 .catalog-filter:hover {
-    cursor: pointer;
+    cursor: pointer;    
 }
 
 .catalog-filter:hover .catalog-filter-txt {
-    color: #F16D7F;
+    color: #F16D7F; 
+    transition: 0.5s;  
 }
 .catalog-filter:hover .catalog-filter-icon {
     fill: #F16D7F;
+    transition: 0.5s;
 }
 
 .catalog-filter-list p {
@@ -1373,7 +1378,7 @@ input[type="checkbox"] {
     text-transform: uppercase;
     font-family: 'Lato';
     font-style: normal;
-    font-weight: 700;
+    font-weight: 400;
     font-size: 18px;
     line-height: 29px;
     color: #222222;
