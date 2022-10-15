@@ -14,7 +14,7 @@
         <header class="top-header">
             <div class="header-wrp">
                 <div class="top-right-block">
-                    <menu-up></menu-up>
+                    <menuup></menuup>
                     <figure class="navigation-panel-transform">
                     <a href="#" class="login-button">
                         <svg width="29" height="29" viewBox="0 0 29 29"  xmlns="http://www.w3.org/2000/svg">
@@ -37,24 +37,12 @@
                     <a href="#" class="index-button">
                         <img src="img/logo.png" alt="index.html">
                     </a>
-                    <search></search>
+                    <search ref="search"></search>
                 </div>
-                <cart 
+                <cart ref="cart"
                 :cart="cart"
                 :visibility="showCart"   
                 ></cart>
-
-                <!-- <div class="cart-list" v-show="show">
-                    <div class="cart-product-item" :key="product.id_product"  v-for="product of cart">
-                        <img class="cart-image" :src="imgCatalog" alt="image">
-                        <h3 class="">{{product.product_name}}</h3>
-                        <p class="">Цена: {{product.price}} $</p>
-                        <p class="">Количество: <span>{{product.quantity}}</span></p>
-                        <button class="remove-cart-button" :key="product.id_product" @click="removeProduct(product)">Удалить</button>
-                        <button class="reduce-cart-button" :key="product.id_product" @click="reduceQty(product)">-</button>
-                        <button class="increase-cart-button" :key="product.id_product" @click="increaseQty(product)">+</button>
-                        </div>
-                </div> -->
             </div>                       
         </header>   
         <main>
@@ -126,14 +114,12 @@
                             </svg>
                         </li>                    
                     </ul>
-                    <sorter-item :visible="showSorter"></sorter-item>
+                    <sorteritem :visible="showSorter"></sorteritem>
                 </div>
             </section>
             <section class="container">
                 <div class="product-cards">
-                    <products 
-                    :products="filtered" 
-                    @add-product="addProduct"
+                    <products ref="products"
                     ></products>
                     <div class="pagination">
                         <a href="#">

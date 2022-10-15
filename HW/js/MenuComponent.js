@@ -1,4 +1,4 @@
-Vue.component('menu-up', {
+Vue.component('menuup', {
     template: `
     <nav class="menu-button">
     <input type="checkbox" id="on-click">

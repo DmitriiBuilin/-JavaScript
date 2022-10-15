@@ -1,4 +1,4 @@
-Vue.component('sorter-item', {
+Vue.component('sorteritem', {
     props: ['visible'],
     template: `
     <div class="filter-size-options" v-show="visible">

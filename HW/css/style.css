@@ -108,14 +108,13 @@
     border: 1px solid black;
     border-radius: 5px;
     padding: 2px 8px;
+    transition: 500ms;
 }
 
 .remove-cart-button:hover {
     cursor: pointer;
-    color: white;
-    border-color: #F16D7F;
-    transition: 200ms;
-    background-color: #F16D7F;
+    color: #575757;
+    background-color: #F8F3F4;
 }
 
 .reduce-cart-button, .increase-cart-button {
@@ -124,14 +123,13 @@
     border-radius: 5px;
     padding: 2px;
     width: 23px;
+    transition: 500ms;
 }
 
 .reduce-cart-button:hover, .increase-cart-button:hover {
     cursor: pointer;
-    color: white;
-    border-color: #F16D7F;
-    transition: 200ms;
-    background-color: #F16D7F;
+    color: #575757;
+    background-color: #F8F3F4;
 }
 
 .products {

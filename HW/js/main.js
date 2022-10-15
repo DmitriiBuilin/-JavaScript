@@ -6,23 +6,12 @@ const API =
 const app = new Vue({
     el: '#app',
     data: {
-        catalogUrl: '/catalogData.json',
-        cartUrl: '/getBasket.json',
-        products: [],
-        filtered: [],
         cart: [],
-        userSearch: '',
         countItems: '',
         showCart: false,
         showSorter: false,
     },
     methods: {
-        filter(){
-         const regexp = new RegExp(this.userSearch, 'i');
-         this.filtered = this.products.filter(
-            product => regexp.test(product.product_name)
-            );
-        },
         getJson(url){
             return fetch(url)
                 .then(result => result.json())
@@ -59,17 +48,5 @@ const app = new Vue({
             product.quantity++;
 
         }
-    },
-    mounted(){
-        this.getJson(`/catalogData`)
-            .then(data => {
-                for(let el of data){
-                    this.products.push(el);
-                    this.filtered.push(el);
-
-                }
-                                
-        })
-    }
-    
+    },   
 })
