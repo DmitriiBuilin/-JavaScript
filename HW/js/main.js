@@ -50,9 +50,7 @@ const app = new Vue({
                 body: JSON.stringify(data)
             })
                 .then(result => result.json())
-                .catch(error => {
-                    console.log(error);
-                })
+                .catch(error => console.log(error))
         },        
     },   
 })

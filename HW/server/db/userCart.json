@@ -1,41 +1,5 @@
 {
     "amount": 0,
     "countGoods": 0,
-    "contents": [
-        {
-            "id_product": 2,
-            "img": "img/card_2.png",
-            "product_name": "BLACK DRESS",
-            "price": 200,
-            "quantity": null
-        },
-        {
-            "id_product": 3,
-            "img": "img/card_3.png",
-            "product_name": "HOODIE",
-            "price": 300,
-            "quantity": null
-        },
-        {
-            "quantity": null,
-            "id_product": 1,
-            "img": "img/card_1.png",
-            "product_name": "GRAY BACKPACK",
-            "price": 100
-        },
-        {
-            "quantity": null,
-            "id_product": 6,
-            "img": "img/card_6.png",
-            "product_name": "GREY T-SHIRT",
-            "price": 600
-        },
-        {
-            "quantity": null,
-            "id_product": 9,
-            "img": "img/card_9.png",
-            "product_name": "BLUE CAP",
-            "price": 900
-        }
-    ]
+    "contents": []
 }

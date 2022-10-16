@@ -156,6 +156,11 @@
 
 .cart-list {
     display: flex;
+    align-content: center;
+}
+
+.cart-list h2 {
+    color: #F16D7F;
 }
 
 .buy-btn {
