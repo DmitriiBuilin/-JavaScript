@@ -2,8 +2,11 @@ const express = require('express');
 const fs = require('fs');
 
 const app = express(); 
+const cart = require('./cartRouter');
 
+app.use(express.json());
 app.use('/', express.static('.'));
+app.use('/api/cart', cart);
 
 app.get('/catalogData', (req, res) => { 
     fs.readFile('server/db/catalog.json','utf8', (err, data)=> {

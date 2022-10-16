@@ -1,11 +1,84 @@
 Vue.component('cart', {
-    props: ['img', 'cart', 'visibility'],
+    data(){
+        return {
+            cart: [],
+        }
+    },
+    mounted(){
+        this.$parent.getJson(`/api/cart`)
+            .then(data => {
+                for (let product of data.contents){
+                    this.cart.push(product);
+                }
+            });
+    },
+    methods: {
+        addProduct(product){
+            let find = this.cart.find(
+                item => item.id_product === product.id_product
+                );
+            if(find){
+                this.$parent.putJson(`/api/cart/${product.id_product}`, {quantity: 1})
+                    .then(data => {
+                        if(data.result === 1){
+                            product.quantity++
+                        }
+                    })
+            }else{
+                // this.$set(product,'quantity',1);
+                // this.cart.push(product);
+                // this.countItems = this.cart.length;
+                const prod = Object.assign({quantity: 1}, product);
+                this.$parent.postJson(`/api/cart/${product.id_product}`, prod)
+                    .then(data => {
+                        if(data.result === 1){
+                            this.cart.push(prod)
+                        }
+                    })
+            }
+        },
+        removeProduct(product){
+            // this.cart.splice(this.cart.indexOf(product), 1);
+            // this.countItems = this.cart.length;
+
+            this.$parent.putJson(`/api/cart/${product.id_product}`)
+            .then( data => {
+                if ( data.result ) {
+                    this.cart.splice( this.cart.indexOf(product), 1 );
+                } else {
+                    console.log( 'error' );
+                }
+            })
+        },
+        reduceQty(product){
+            if (product.quantity > 1) {
+            this.$parent.putJson(`/api/cart/${product.id_product}`, {quantity: -1})
+                .then(data => {
+                    if(data.result === 1){
+                        product.quantity--;
+                    }
+                })
+            }
+        },
+        increaseQty(product){
+            this.$parent.putJson(`/api/cart/${product.id_product}`, {quantity: 1})
+            .then(data => {
+                if(data.result === 1){
+                    product.quantity++
+                }
+            })
+        },
+    },
+    props: ['visibility'],
     template: `
-    <div class="cart-list" v-show="visibility">
+    <div class="cart-list"  v-show="visibility">
         <cart-item v-for="product of cart" 
         :key="product.id_product" 
         :img="product.img" 
         :product="product"
+        @removeProduct="removeProduct"
+        @reduceQty="reduceQty"
+        @increaseQty="increaseQty"
         ></cart-item>
     </div>
     `
@@ -19,7 +92,7 @@ Vue.component('cart-item', {
             <div class="shopping-cart-description">
                 <div class="shopping-cart-header-wrp">
                     <h2>{{product.product_name}}</h2>
-                    <button type="button" class="shopping-cart-close-button" @click="$root.removeProduct(product)">
+                    <button type="button" class="shopping-cart-close-button" @click="$emit('removeProduct', product)">
                     </button>
                 </div>
                 <p>Price: {{product.price}} $</p>
@@ -27,9 +100,9 @@ Vue.component('cart-item', {
                     <p>Quantity:</p>
                     <input type="number" min="1" :value="product.quantity" placeholder="">
                 </div>
-                <button class="remove-cart-button" :key="product.id_product" @click="$root.removeProduct(product)">Удалить</button>
-                <button class="reduce-cart-button" @click="$root.reduceQty(product)">-</button>
-                <button class="increase-cart-button" @click="$root.increaseQty(product)">+</button>
+                <button class="remove-cart-button" :key="product.id_product" @click="$emit('removeProduct', product)">Удалить</button>
+                <button class="reduce-cart-button" @click="$emit('reduceQty', product)">-</button>
+                <button class="increase-cart-button" @click="$emit('increaseQty', product)">+</button>
             </div>
         </div>
     `

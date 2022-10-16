@@ -1,15 +1,11 @@
 "use strict";
 
-const API = 
-'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
-
 const app = new Vue({
     el: '#app',
     data: {
-        cart: [],
         countItems: '',
-        showCart: false,
         showSorter: false,
+        showCart: false,
     },
     methods: {
         getJson(url){
@@ -19,34 +15,44 @@ const app = new Vue({
                     console.log(error);
                 })
         },
-        addProduct(product){
-                let find = this.cart.find(
-                    item => product.id_product === item.id_product
-                    );
-                if(find){
-                    find.quantity++;
-                }else{
-                    this.$set(product,'quantity',1);
-                    this.cart.push(product);
-                    this.countItems = this.cart.length;
-
-                }
+        postJson(url, data){
+            return fetch(url, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+                .then(result => result.json())
+                .catch(error => {
+                    console.log(error)
+                })
         },
-        removeProduct(product){
-            this.cart.splice(this.cart.indexOf(product), 1);
-            this.countItems = this.cart.length;
-
+        putJson(url, data){
+            return fetch(url, {
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+                .then(result => result.json())
+                .catch(error => {
+                    console.log(error);
+                })
         },
-        reduceQty(product){
-            if(product.quantity > 1){
-                product.quantity--;
-
-            }
-            
-        },
-        increaseQty(product){
-            product.quantity++;
-
-        }
+        delJson(url, data){
+            return fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+                .then(result => result.json())
+                .catch(error => {
+                    console.log(error);
+                })
+        },        
     },   
 })
