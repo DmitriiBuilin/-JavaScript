@@ -105,7 +105,7 @@ Vue.component('cart-item', {
                 <p>Price: {{product.price}} $</p>
                 <div class="shopping-cart-description-quantity">
                     <p>Quantity:</p>
-                    <input type="number" min="1" :value="product.quantity" 
+                    <input type="number" readonly="readonly" min="1" :value="product.quantity" 
                     placeholder="">
                 </div>
                 <button class="remove-cart-button" :key="product.id_product" 

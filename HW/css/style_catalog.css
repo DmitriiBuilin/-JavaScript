@@ -829,7 +829,7 @@ input[type=checkbox]:checked ~ .pop-up-menu {
 }
 
 .social-networcs-icon-button:hover {
-    background-color:#F16D7F;
+    background-color:#E1E1E1;
     cursor: pointer;
 }
 
@@ -1639,7 +1639,7 @@ input[type="checkbox"] {
     font-size: 14px;
     line-height: 17px;
     visibility: hidden;
-
+    transition: 0.2s;
 }
 
 .product-cards-item-image-darken:hover .product-cards-item-image-darken-button {
@@ -1649,12 +1649,12 @@ input[type="checkbox"] {
 .product-cards-item-image-darken button:hover {
     cursor: pointer;
     background-color: none;
-    color: #F26376;
-    border-color: #F26376;
+    color: #E1E1E1;
+    border-color: #E1E1E1;
 }
 
 .product-cards-item-image-darken button:hover svg {
-    fill: #F26376;
+    fill: #E1E1E1;
 }
 
 .product-cards-item-image-darken svg {
@@ -1664,7 +1664,7 @@ input[type="checkbox"] {
 
 .product-cards-item-image-darken button:active {
     cursor: pointer;
-    background-color: #F26376;
+    background-color: #E1E1E1;
     color: #F7F7F7;
     border: 1px solid #F7F7F7;
 }
